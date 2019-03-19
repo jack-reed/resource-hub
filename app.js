@@ -1,17 +1,28 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const path = require('path')
+const express = require('express')
+const hbs = require('hbs')
+const createError = require('http-errors')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index')
+const usersRouter = require('./routes/users')
 
-var app = express();
+const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+const publicDirectoryPath = path.join(__dirname, '/public')
+const viewsPath = path.join(__dirname, '/templates/views')
+const partialsPath = path.join(__dirname, '/templates/partials')
+console.log(__dirname)
+
+// Setup static directory to serve
+app.use(express.static(publicDirectoryPath))
+
+// Setup handlebars engine and templates location
+app.set('view engine', 'hbs')
+app.set('views', viewsPath)
+hbs.registerPartials(partialsPath)
+
 
 app.use(logger('dev'));
 app.use(express.json());
