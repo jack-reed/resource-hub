@@ -4,6 +4,7 @@
 
 <head>
     <title>Homepage</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
@@ -11,17 +12,20 @@
     {{>header}}
 
     <p>Homepage text</p>
-
-    <form>
-        <input placeholder="Chat">
-        <button>Send</button>
-    </form>
+    <div id="chat-window">
+        {{>chatbox}}
+    </div>
+</div>
+<form>
+    <input placeholder="Chat">
+    <button>Send</button>
+</form>
 
 </div>
 
 {{>footer}}
 
-<script src="../../app.js"></script>
+<script src="/javascripts/talk.js"></script>
 </body>
 
 </html>
