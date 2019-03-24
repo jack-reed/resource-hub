@@ -1,7 +1,8 @@
 const path = require('path')
+const http = require('http')
 const express = require('express')
+const socketio = require('socket.io')
 const hbs = require('hbs')
-const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
@@ -9,20 +10,24 @@ const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 
 const app = express();
+const server = http.createServer(app)
+const io = socketio(server)
 
-const publicDirectoryPath = path.join(__dirname, '/public')
+const publicDirectoryPath = path.join(__dirname, './public')
 const viewsPath = path.join(__dirname, '/templates/views')
 const partialsPath = path.join(__dirname, '/templates/partials')
 console.log(__dirname)
 
-// Setup static directory to serve
+const port = process.env.PORT || 3000
+
 app.use(express.static(publicDirectoryPath))
 
+// Setup static directory to serve
+app.use(express.static(publicDirectoryPath))
 // Setup handlebars engine and templates location
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
-
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -33,23 +38,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+//_____________________Sockets IO________________________
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+io.on('connection', () => {
+  console.log('New WebSocket conncection')
+})
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-app.listen(3000, () => {
+server.listen(port, () => {
   console.log('Server started correctly on port 3000')
 })
 
