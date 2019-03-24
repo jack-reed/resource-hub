@@ -5,12 +5,12 @@ const axios = require('axios')
 //     return request
 // })
 
-const postChat = async () => {
+ async function sendMessage() {
     try {
         return await axios.post('https://api.pandorabots.com/atalk/', null, {
             params: {
                 botkey: 'auVe4pZaFgw0jadMAyG1QdriBlNwo-EQMDgHt37BFuGi5XrjpDLaow4qv6EMIJ3dXIm_9KOKSnhYlMG121I3sYQRU15Pt2ZE',
-                input: 'how are you today'
+                input: 'how are you today?'
             }
         })
             .then(function (response) {
@@ -22,5 +22,4 @@ const postChat = async () => {
 
 }
 
-module.exports = postChat()
-
+exports.sendMessage = sendMessage()
