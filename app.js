@@ -8,10 +8,10 @@ const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const generateMessage = require('./src/utils/messages')
-const postChat = require('./src/utils/postChat')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
+const aboutRouter = require('./routes/about')
 const app = express();
 const server = http.createServer(app)
 const io = socketio.listen(server)
@@ -27,6 +27,8 @@ console.log(__dirname)
 app.use(express.static(publicDirectoryPath))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+app.use(publicDirectoryPath, express.static(path.join(__dirname, '/node_modules/govuk-frontend/assets')))
+
 
 // Setup handlebars engine and templates location
 app.set('view engine', 'hbs')
@@ -41,6 +43,7 @@ app.use(cookieParser());
 //router
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/about', aboutRouter);
 
 io.on('connection', (socket) => {
     console.log('New WebSocket connection')

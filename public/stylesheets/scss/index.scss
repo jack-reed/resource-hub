@@ -1,0 +1,6 @@
+$govuk-global-styles: true;
+@import 'colors';
+@import 'layout';
+@import 'forms';
+@import "../../../node_modules/govuk-frontend/all";
+
