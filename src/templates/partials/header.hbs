@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/html">
+<html>
 
 <head>
     <title>Homepage</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+    <link href='../../../dist/main.js' rel='stylesheet' />
+    <link href='node_modules/@fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='node_modules/@fullcalendar/daygrid/main.css' rel='stylesheet' />
 
-<header class="govuk-header " role="banner" data-module="header">
+</head>
+<body class="govuk-template__body">
+<header class="govuk-header" role="banner" data-module="header">
     <div class="govuk-header__container govuk-width-container">
 
         <div class="govuk-header__logo">
@@ -30,10 +34,22 @@
         </div>
     </div>
 </header>
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+        <h1 class="govuk-heading-xl">{{title}}</h1>
+        <nav class="app-navigation govuk-clearfix">
+            <ul class="app-navigation__list govuk-width-container">
+                <li>
+                    <a class="govuk-link" href="/" data-topnav="Homepage">Homepage</a>
+                </li>
 
-    <h1 class="govuk-heading-xl">{{title}}</h1>
+                <li>
+                    <a class="govuk-link" href="/chat" data-topnav="Chatbot">Chatbot</a>
+                </li>
 
-    <a href="/">Homepage</a>
-    <a href="/about">Chatbot</a>
-    <a href="/about">Resource Booker</a>
-    <a href="/help">Help</a>
+                <li>
+                    <a class="govuk-link" href="/list" data-topnav="Resources">Resources</a>
+                </li>
+
+            </ul>
+        </nav>
