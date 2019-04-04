@@ -5,7 +5,7 @@ const axios = require('axios')
 //     return request
 // })
 
- async function sendMessage() {
+async function sendMessage() {
     try {
         return await axios.post('https://api.pandorabots.com/atalk/', null, {
             params: {

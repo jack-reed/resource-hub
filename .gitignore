@@ -63,3 +63,6 @@ typings/
 chatbot.json
 
 .idea/
+
+.sass-cache
+.sass-cache/*
