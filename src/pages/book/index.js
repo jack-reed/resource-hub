@@ -1,10 +1,12 @@
 const express = require('express')
-const get = require('./functions');
+const functions = require('./functions');
 
 const router = new express.Router();
 
 /* GET home page. */
-router.get('/:resourceId', get)
+router.get('/:resourceId', functions.get)
+// router.post('/:resourceId', functions.post);
+
 
 
 
