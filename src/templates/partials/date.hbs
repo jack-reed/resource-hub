@@ -1,0 +1,41 @@
+<div class="govuk-form-group">
+    <div class="govuk-date-input" id="">
+        <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label">
+                    Time
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="{{type}}-day"
+                       name="{{type}}-time" type="time"
+                       value="09:00" required>
+            </div>
+        </div>
+        <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label">
+                    Day
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}-day"
+                       name="{{type}}-day" type="number" pattern="[0-9]*" value="{{value-day}}">
+            </div>
+        </div>
+        <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label">
+                    Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}-month"
+                       name="{{type}}-month" type="number" pattern="[0-9]*" value="{{value-month}}" readonly>
+            </div>
+        </div>
+        <div class=" govuk-date-input__item">
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label">
+                    Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="{{type}}-year"
+                       name="{{type}}-year" type="number" pattern="[0-9]*" value="{{value-year}}" readonly>
+            </div>
+        </div>
+    </div>
+</div>

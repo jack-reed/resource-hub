@@ -39,8 +39,7 @@ io.on('connection', (socket) => {
     console.log('New WebSocket connection')
 //sockets
     socket.on('sendMessage', async function (message, callback) {
-        console.log(message)
-        io.emit('message', generateMessage("Jack", message))
+z        io.emit('message', generateMessage("User", message))
         try {
             return await axios.post('https://api.pandorabots.com/atalk/', null, {
                 params: {

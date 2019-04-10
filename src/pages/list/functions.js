@@ -1,7 +1,7 @@
-const getLocationsAndRooms = require('../../libs/booking-api')
+const bookingApi = require('../../libs/booking-api')
 
 function get(req, res, next) {
-        getLocationsAndRooms()
+        bookingApi.getLocationsAndRooms()
         .then(function (response) {
             res.render('choose-a-resource', {
                 title: `Resources available at ${response.data[0].name}`,
@@ -9,7 +9,6 @@ function get(req, res, next) {
                 'resources': response.data[0].resources
             })
         })
-
 }
 
 module.exports = get
