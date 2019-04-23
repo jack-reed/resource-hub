@@ -2,5 +2,7 @@ $govuk-global-styles: true;
 @import 'colors';
 @import 'layout';
 @import 'forms';
+@import 'chat';
+@import 'book';
 @import "../../../node_modules/govuk-frontend/all";
 

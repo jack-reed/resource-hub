@@ -8,17 +8,17 @@ const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const generateMessage = require('./src/utils/messages')
-
 const app = express()
 const server = http.createServer(app)
+// app.use(expressValidator)
+
 const io = socketio.listen(server)
 
 const port = process.env.PORT || 3000
-
 const publicDirectoryPath = path.join(__dirname, '/public')
 const viewsPath = path.join(__dirname, '/src/templates/views')
-const partialsPath = path.join(__dirname, '/src/templates/partials')
 
+const partialsPath = path.join(__dirname, '/src/templates/partials')
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 app.use(express.static(path.join(__dirname, 'public')));
@@ -29,6 +29,9 @@ app.use(publicDirectoryPath, express.static(path.join(__dirname, '/node_modules/
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
+hbs.registerHelper('json', function(context) {
+    return context
+});
 
 //logger
 app.use(logger('dev'));
@@ -39,7 +42,7 @@ io.on('connection', (socket) => {
     console.log('New WebSocket connection')
 //sockets
     socket.on('sendMessage', async function (message, callback) {
-z        io.emit('message', generateMessage("User", message))
+        io.emit('message', generateMessage("User", message))
         try {
             return await axios.post('https://api.pandorabots.com/atalk/', null, {
                 params: {
@@ -63,6 +66,7 @@ app.use('/', require('./src/pages/home/index'))
 app.use('/chat', require('./src/pages/chat/index'))
 app.use('/list', require('./src/pages/list/index'))
 app.use('/book', require('./src/pages/book/index'))
+app.use('/confirmation', require('./src/pages/confirmation/index.js'))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

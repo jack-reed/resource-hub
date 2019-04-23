@@ -28,8 +28,8 @@ module.exports = function (time, day, month, year) {
     const hours = formatHours(time)
 
     const date = new Date(year, month, day, hours, minutes)
+    date.setMonth(date.getMonth() - 1)
     date.setTime(date.getTime() - new Date().getTimezoneOffset() * 60 * 1000)
-    console.log("date/time is:" + date)
     return date
 
 }

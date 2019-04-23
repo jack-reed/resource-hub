@@ -5,9 +5,7 @@ const router = new express.Router();
 
 /* GET home page. */
 router.get('/:resourceId', functions.get)
-// router.post('/:resourceId', functions.post);
-
-
+router.post('/:resourceId', functions.post);
 
 
 module.exports = router

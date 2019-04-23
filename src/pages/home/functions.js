@@ -1,6 +1,6 @@
 function get(req, res, next) {
     res.render('index', {
-        title: 'Home'
+        title: `Newcastle's Digital Delivery Centre Resource Hub`
     })
 }
 
