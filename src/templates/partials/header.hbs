@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <link href='../../../dist/main.js' rel='stylesheet' />
-    <link href='node_modules/@fullcalendar/core/main.css' rel='stylesheet' />
-    <link href='node_modules/@fullcalendar/daygrid/main.css' rel='stylesheet' />
-
 </head>
 <body class="govuk-template__body">
 <header class="govuk-header" role="banner" data-module="header">
     <div class="govuk-header__container govuk-width-container">
 
-        <div class="govuk-header__logo">
+        <div cl.ass="govuk-header__logo">
             <a href="#" class="govuk-header__link govuk-header__link--homepage">
         <span class="govuk-header__logotype">
 
@@ -35,21 +30,9 @@
     </div>
 </header>
 <div class="govuk-width-container">
-    <main class="govuk-main-wrapper " id="main-content" role="main">
-        <!--<nav class="app-navigation govuk-clearfix">-->
-            <!--<ul class="app-navigation__list govuk-width-container">-->
-                <!--<li>-->
-                    <!--<a class="govuk-link" href="/" data-topnav="Homepage">Homepage</a>-->
-                <!--</li>-->
 
-                <!--<li>-->
-                    <!--<a class="govuk-link" href="/chat" data-topnav="Chatbot">Chatbot</a>-->
-                <!--</li>-->
-
-                <!--<li>-->
-                    <!--<a class="govuk-link" href="/list" data-topnav="Resources">Resources</a>-->
-                <!--</li>-->
-
-            <!--</ul>-->
-        <!--</nav>-->
+<main class="govuk-main-wrapper " id="main-content" role="main">
+    <a href="#" class="govuk-back-link">Back</a>
+{{#if title}}
         <h1 class="govuk-heading-xl">{{title}}</h1>
+{{/if}}
