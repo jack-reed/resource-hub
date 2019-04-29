@@ -1,20 +1,63 @@
+{{!--
+  Book a Resource Page
+
+  Contains: JS Calendar, Booking/Deletion Form
+--}}
+
 {{>header}}
 
+<div id='calendar'></div>
 <br>
-<form method='POST' action=''>
-    <fieldset class="govuk-fieldset">
-        {{>text text='Booking Name' text-id='booking-name'}}
-        {{>text text='Description' text-id='description'}}
-        {{>date type='start' value-day = day value-month = month value-year=year}}
-        {{>date type='end' value-day = day value-month = month value-year=year}}
-        <button type="submit" class="govuk-button">
-            Save and continue
-        </button>
-    </fieldset>
-</form>
-{{>footer}}
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+<form method='POST'>
+    {{! Removal toggle}}
+    <label class="govuk-label" for="{{text-id}}">
+        Remove a booking
+    </label>
+    <label class="govuk-label switch">
+        <input id="remove" name="remove" type="checkbox">
+        <span class="slider"></span>
+    </label>
+    <br>
+    <fieldset style="display:none;" id="removeForm" class="govuk-fieldset">
+        {{>text text='Booking Id' text-id='bookingRemovalId'}}
+    </fieldset>
+    <fieldset id="bookForm" class="govuk-fieldset">
+        {{>text text='Booking Name' text-id='name'}}
+        {{>text text='Description' text-id='description'}}
+        {{>date type-heading='Start' type='start' value-day = day value-month = month value-year=year}}
+        {{>date type-heading='End' type='end' value-day = day value-month = month value-year=year}}
+    </fieldset>
+    <button type="submit" class="govuk-button">
+        Save and continue
+    </button>
+</form>
+
+{{>footer}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+<script src="/javascripts/book.js"></script>
+
+<script>
+        {{! create javascript calendar, takes json list of events }}
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            defaultView: 'agendaWeek',
+            editable: false,
+            eventLimit: true, // allow "more" link when too many events
+            weekends: false,
+            minTime: "07:00:00",
+            maxTime: "18:00:00",
+            height: 300,
+
+            {{#if dates}}
+                events: {{{json dates}}}
+            {{/if}}
+        });
+    });
+</script>
 </body>
 
 </html>

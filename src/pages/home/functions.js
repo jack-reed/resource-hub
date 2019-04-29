@@ -1,6 +1,12 @@
-function get(req, res, next) {
+/**
+ *  Executed on GET of page,
+ *
+ *  Renders 'Homepage' with 'Title'
+ */
+
+function get(req, res) {
     res.render('index', {
-        title: 'Home'
+        title: `Newcastle's Digital Delivery Centre Resource Hub`
     })
 }
 

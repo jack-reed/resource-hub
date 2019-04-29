@@ -1,13 +1,13 @@
 const express = require('express')
-const functions = require('./functions');
+const functions = require('./functions')
+const router = new express.Router()
 
-const router = new express.Router();
+/**
+ *  Routing for booking page, takes resourceId as URL parameter.
+ */
 
-/* GET home page. */
 router.get('/:resourceId', functions.get)
-// router.post('/:resourceId', functions.post);
-
-
+router.post('/:resourceId', functions.post);
 
 
 module.exports = router

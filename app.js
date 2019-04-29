@@ -8,13 +8,13 @@ const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const generateMessage = require('./src/utils/messages')
-
 const app = express()
 const server = http.createServer(app)
+const apiUrl = require('./keys')
+
 const io = socketio.listen(server)
 
 const port = process.env.PORT || 3000
-
 const publicDirectoryPath = path.join(__dirname, '/public')
 const viewsPath = path.join(__dirname, '/src/templates/views')
 const partialsPath = path.join(__dirname, '/src/templates/partials')
@@ -29,6 +29,9 @@ app.use(publicDirectoryPath, express.static(path.join(__dirname, '/node_modules/
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
+hbs.registerHelper('json', function(context) {
+    return context
+});
 
 //logger
 app.use(logger('dev'));
@@ -39,17 +42,17 @@ io.on('connection', (socket) => {
     console.log('New WebSocket connection')
 //sockets
     socket.on('sendMessage', async function (message, callback) {
-z        io.emit('message', generateMessage("User", message))
+        io.emit('message', generateMessage("User", message))
         try {
-            return await axios.post('https://api.pandorabots.com/atalk/', null, {
+            return await axios.post(`${apiUrl.pandoraBotsApi}`, null, {
                 params: {
-                    botkey: 'auVe4pZaFgw0jadMAyG1QdriBlNwo-EQMDgHt37BFuGi5XrjpDLaow4qv6EMIJ3dXIm_9KOKSnhYlMG121I3sYQRU15Pt2ZE',
+                    botkey: `${apiUrl.botkey}`,
                     input: message
                 }
             })
                 .then(function (response) {
                     const message = response.data.responses[0]
-                    io.emit('response', generateMessage("Bot", message))
+                    io.emit('response', generateMessage("HMRC Digital Resource Bot", message))
                     callback()
                 })
         } catch (error) {

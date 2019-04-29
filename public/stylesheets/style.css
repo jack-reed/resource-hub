@@ -1,3 +1,168 @@
+.window {
+  width: 850px;
+  cursor: default;
+  margin: 20px auto;
+  height: 400px;
+  overflow-y: scroll;
+  border: 1px solid #f0f0f0; }
+
+.chatbox {
+  width: 850px;
+  margin: 5px auto;
+  height: 50px; }
+
+.chatbox > input {
+  height: 100%;
+  width: 80%;
+  padding: 0 20px;
+  margin: 0; }
+
+.chatbox > button {
+  height: 100%;
+  width: 14%;
+  margin: 0; }
+
+.window::-webkit-scrollbar {
+  width: 10px;
+  max-width: 6px;
+  height: auto;
+  max-height: 8px; }
+
+.window::-webkit-scrollbar-thumb {
+  background: #f0f0f0;
+  border-radius: 5px;
+  max-width: 10px; }
+
+.window::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 5px; }
+
+.text {
+  color: #a4a4a4;
+  font-family: tahoma, serif;
+  font-size: 13px;
+  font-weight: lighter;
+  width: 300px;
+  border: 1px solid #f0f0f0;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 5px; }
+
+.textBox {
+  width: 99%;
+  background-color: rgba(240, 240, 240, 0.2);
+  display: table;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 auto 10px; }
+
+.textBox input[type=button] {
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #f0f0f1;
+  background-color: #333;
+  color: #fff;
+  outline: none;
+  float: left; }
+
+.textBox input[type=button]:hover {
+  color: #fff;
+  border: 1px solid #ccc;
+  -webkit-transition: all 1.5s;
+  -moz-transition: all 1.5s;
+  transition: all 1.5s;
+  background-color: #9F6905; }
+
+.left {
+  float: left; }
+
+.left > img {
+  margin-top: 13px;
+  margin-right: 10px; }
+
+.left > p {
+  margin-top: 20px; }
+
+.right {
+  float: right; }
+
+.right > img {
+  margin-top: 13px;
+  margin-left: 10px; }
+
+.right > p {
+  margin-top: 20px; }
+
+img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #f0f0ff;
+  padding: 5px; }
+
+a {
+  text-decoration: none; }
+
+br {
+  height: 20px;
+  clear: both; }
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px; }
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0; }
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+input:checked + .slider {
+  background-color: #2196F3; }
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3; }
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); }
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px; }
+
+.slider.round:before {
+  border-radius: 50%; }
+
 .govuk-link, a {
   font-family: "nta", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

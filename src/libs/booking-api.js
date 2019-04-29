@@ -1,95 +1,80 @@
 const got = require('got')
 const axios = require('axios')
+const APIURL = require('../../keys')
 
-const apiUrl = (process.env.API_URL || 'https://final-project-booking-api.herokuapp.com') + '/api'
+const bookingUrl = (process.env.API_URL || `${APIURL.bookingUrl}`) + '/api'
 
-async function getLocationsAndRooms() {
+/**
+ * getLocationsAndResources: retrieves each Locations with the Resources that belong to it,
+ *                           if a resource has a feature associated with it, this will be returned too.
+ *
+ * @returns API response: Locations and Resources
+ *
+ */
+
+async function getLocationsAndResources() {
 
     try {
 
         const filter = '{"include":{"relation":"resources","scope":{"where":{"active":true},"include":"features"}}}'
-        return await axios.get(`${apiUrl}/Locations?filter=${filter}`)
+        return await axios.get(`${bookingUrl}/Locations?filter=${filter}`)
     } catch
         (error) {
         console.error(error)
     }
 }
 
-async function getRoomBookings(id) {
+/**
+ * getResourceBookings: returns bookings for a resource with a given ID
+ *
+ * @param id
+ * @returns API response: Resource Bookings for ID
+ */
+
+async function getResourceBookings(id) {
     try {
-        return await axios.get(`${apiUrl}/Resources/${id}/bookings`)
-            .then(function (response) {
-                console.log(response.data)
-            })
+        return await axios.get(`${bookingUrl}/Resources/${id}/bookings`)
+
     } catch
         (error) {
         console.error(error)
     }
 }
+
+/**
+ * removeBooking: removes a booking with a given resourceId
+ *
+ * @param id
+ * @returns API response: Booking deletion confirmation
+ */
+
+async function removeBooking(id) {
+    try {
+        return await axios.delete(`${bookingUrl}/Bookings/${id}`)
+
+    } catch
+        (error) {
+        console.error(error)
+    }
+}
+
+/**
+ * bookResource: creates a booking for a resource with a body of details provided
+ *
+ * @param body
+ *
+ * params in body: startDate, endDate, description, title, resourceId
+ *  @returns API response: Booking confirmation
+ *
+ */
 
 function bookResource(body) {
-    return got.post(`${apiUrl}/Bookings`, {json: true, body})
-        .then(function (response) {
-            console.log(response)
-        })
-
-        .catch(err => console.error(err))
-
+    return got.post(`${bookingUrl}/Bookings`, {json: true, body})
 }
-
-// async function bookResourceNew(body) {
-//     return axios.post(`${apiUrl}/Bookings`, {
-//             headers: {
-//                 accept: 'application/json',
-//                 'content-type': 'application/json'
-//             },
-//             body: {
-//                 start: '2019-04-02T20:32:56.971Z',
-//                 end: '2019-04-02T21:32:56.971Z',
-//                 name: 'NAAAAAAAME',
-//                 description: 'dessssssssc',
-//                 resourceId: '5ca346a994043c0017fc26ae'
-//             }
-//         }
-//     ).then(function (response) {
-//         console.log(response)
-//     }).catch(err => console.error(err))
-// }
-// async function bookResource(start, end, name, desc, resId) {
-//     try {
-//         return await axios.post(`${apiUrl}/Bookings`, null, {
-//             params: {
-//                 start: start,
-//                 end: end,
-//                 description: desc,
-//                 name: name,
-//                 resourceId: resId
-//
-//             }
-//         })
-//             .then(function (response) {
-//                 console.log(response)
-//             })
-//
-//     } catch
-//         (error) {
-//         console.error(error)
-//     }
-// }
-
-const body = {
-    start: '2019-04-02T02:32:56.971Z',
-    end: '2019-04-02T04:32:56.971Z',
-    name: 'NAAAAAAAME',
-    description: 'dessssssssc',
-    resourceId: '5ca346a994043c0017fc26ae'
-}
-
-// getRoomBookings('5ca346a994043c0017fc26ae')
-// getLocationsAndRooms()
 
 module.exports = {
-    getLocationsAndRooms: getLocationsAndRooms,
-    getRoomBookings: getLocationsAndRooms,
-    bookResource: bookResource
+    getLocationsAndResources: getLocationsAndResources,
+    getResourceBookings: getResourceBookings,
+    bookResource: bookResource,
+    removeBooking: removeBooking
 }

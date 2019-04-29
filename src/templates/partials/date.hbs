@@ -1,12 +1,25 @@
+{{!--
+  Date/Time Component
+
+  Fields Included:
+    From: Hour, Minute, Day, Month, Year
+    To: Hour, Minute, Day, Month, Year
+
+    Type as a Variable to allow for reuse across codebase (Date To/From)
+--}}
+
 <div class="govuk-form-group">
     <div class="govuk-date-input" id="">
+        <label class="govuk-label govuk-date-input__label">
+            {{type-heading}} Date
+        </label>
         <div class="govuk-date-input__item">
             <div class="govuk-form-group">
                 <label class="govuk-label govuk-date-input__label">
                     Time
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="{{type}}-day"
-                       name="{{type}}-time" type="time"
+                       name="{{type}}Time" type="time"
                        value="09:00" required>
             </div>
         </div>
@@ -16,7 +29,7 @@
                     Day
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}-day"
-                       name="{{type}}-day" type="number" pattern="[0-9]*" value="{{value-day}}">
+                       name="{{type}}Day" type="number" pattern="[0-9]*" value="{{value-day}}">
             </div>
         </div>
         <div class="govuk-date-input__item">
@@ -25,7 +38,7 @@
                     Month
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}-month"
-                       name="{{type}}-month" type="number" pattern="[0-9]*" value="{{value-month}}" readonly>
+                       name="{{type}}Month" type="number" pattern="[0-9]*" value="{{value-month}}" readonly>
             </div>
         </div>
         <div class=" govuk-date-input__item">
@@ -34,7 +47,7 @@
                     Year
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="{{type}}-year"
-                       name="{{type}}-year" type="number" pattern="[0-9]*" value="{{value-year}}" readonly>
+                       name="{{type}}Year" type="number" pattern="[0-9]*" value="{{value-year}}" readonly>
             </div>
         </div>
     </div>

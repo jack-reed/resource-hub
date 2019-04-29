@@ -1,9 +1,11 @@
 const express = require('express')
-const get = require('./functions');
+const get = require('./functions')
+const router = new express.Router()
 
-const router = new express.Router();
+/**
+ *  Routing for 'resources list' page
+ */
 
-/* GET home page. */
 router.get('/', get)
 
 

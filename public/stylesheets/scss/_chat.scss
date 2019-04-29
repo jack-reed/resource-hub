@@ -1,0 +1,129 @@
+.window {
+  width: 850px;
+  cursor: default;
+  margin: 20px auto;
+  height: 400px;
+  overflow-y: scroll;
+  border: 1px solid #f0f0f0;
+}
+
+.chatbox {
+  width: 850px;
+  margin: 5px auto;
+  height: 50px;
+}
+
+.chatbox > input {
+  height: 100%;
+  width:80%;
+  padding: 0 20px;
+  margin: 0;
+}
+.chatbox > button {
+  height: 100%;
+  width:14%;
+  margin: 0;
+}
+
+.window::-webkit-scrollbar {
+  width: 10px;
+  max-width: 6px;
+  height: auto;
+  max-height: 8px;
+}
+
+.window::-webkit-scrollbar-thumb {
+  background: #f0f0f0;
+  border-radius: 5px;
+  max-width: 10px;
+}
+
+.window::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 5px;
+}
+
+.text {
+  color: #a4a4a4;
+  font-family: tahoma, serif;
+  font-size: 13px;
+  font-weight: lighter;
+  width: 300px;
+  border: 1px solid #f0f0f0;
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.textBox {
+  width: 99%;
+  background-color: rgba(240, 240, 240, 0.2);
+  display: table;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 auto 10px;
+}
+
+.textBox input[type=button] {
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #f0f0f1;
+  background-color: #333;
+  color: #fff;
+  outline: none;
+  float: left;
+}
+
+.textBox input[type=button]:hover {
+  color: #fff;
+  border: 1px solid #ccc;
+  -webkit-transition: all 1.5s;
+  -moz-transition: all 1.5s;
+  transition: all 1.5s;
+  background-color: #9F6905;
+}
+
+.left {
+  float: left;
+}
+
+.left > img {
+  margin-top: 13px;
+  margin-right: 10px;
+}
+
+.left > p {
+  margin-top: 20px;
+}
+
+.right {
+  float: right;
+}
+
+.right > img {
+  margin-top: 13px;
+  margin-left: 10px;
+}
+
+.right > p {
+  margin-top: 20px;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #f0f0ff;
+  padding: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
+br {
+  height: 20px;
+  clear: both;
+}
