@@ -1,6 +1,12 @@
-function get(req, res, next) {
+/**
+ *  Executed on GET of page,
+ *
+ *  Renders 'Help Centre' page with 'Title'
+ */
+
+function get(req, res) {
     res.render('chatbot', {
-        title: 'Chatbot'
+        title: 'Resource Hub Help Centre'
     })
 }
 

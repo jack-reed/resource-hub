@@ -1,7 +1,13 @@
+{{!--
+  Choose a Resource Page
+
+  Contains: Dynamically Populated Table of Resources
+--}}
+
 {{>header}}
 
 <br>
-
+{{#if resources}}
 <table class="govuk-table">
     <caption class="govuk-table__caption">Resources available to book</caption>
     <thead class="govuk-table__head">
@@ -14,13 +20,15 @@
     {{#each resources}}
         <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
-            <th class="govuk-link govuk-table__cell"scope="row"><a href="/book/{{this.id}}" >{{this.name}}</a></th>
+            <th class="govuk-link govuk-table__cell" scope="row"><a href="/book/{{this.id}}">{{this.name}}</a></th>
             <td class="govuk-table__cell">{{this.userCapacity}}</td>
-        <td class="govuk-table__cell">{{#if this.features}}{{#each this.features}}{{this.description}}{{/each}}{{else}}N/A{{/if}}</td>
+            <td class="govuk-table__cell">{{#if this.features}}{{#each
+                    this.features}}{{this.description}}{{/each}}{{else}}N/A{{/if}}</td>
         </tr>
         </tbody>
     {{/each}}
 </table>
+{{/if}}
 
 
 {{>footer}}

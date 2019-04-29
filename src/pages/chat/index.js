@@ -3,7 +3,10 @@ const get = require('./functions');
 
 const router = new express.Router();
 
-/* GET home page. */
+/**
+ *  Routing for 'help centre' page
+ */
+
 router.get('/', get)
 
 module.exports = router

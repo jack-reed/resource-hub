@@ -1,11 +1,18 @@
 const bookApi = require('../../libs/booking-api')
 const formatDate = require('../../utils/formatDate')
 const bookingApi = require('../../libs/booking-api')
-const validator = require('validator')
 
-function get(req, res, next) {
+/**
+ *  Executed on GET of page,
+ *  Iterates through data set, amends:
+ *  field names to suit FullCalendar tool, formats date,
+ *
+ *  Renders 'book a resource' page with modelled data
+ */
+
+function get(req, res) {
     const resourceId = req.params.resourceId
-    bookingApi.getRoomBookings(resourceId)
+    bookingApi.getResourceBookings(resourceId)
         .then(function (response) {
             var i;
             for (i = 0; i < response.data.length; i++) {
@@ -19,7 +26,6 @@ function get(req, res, next) {
 
             const dates = response.data
             const jsonDates = JSON.stringify(dates)
-            console.log(jsonDates)
             const d = new Date()
             const day = d.toLocaleString('en-us', {day: '2-digit'})
             const month = d.toLocaleString('en-us', {month: '2-digit'})
@@ -36,48 +42,60 @@ function get(req, res, next) {
         .catch(err => console.error(err))
 }
 
-function post(req, res, next) {
+
+/**
+ *  Executed on page submit ,
+ *  Checks for empty fields, compares and validates start and end dates.
+ *
+ *  Takes toggle value to determine form type (add/remove), then provides necessary API call for that function.
+ *  On success, renders appropriate confirmation page.
+ */
+
+function post(req, res) {
     const resourceId = req.params.resourceId
 
     const {
+        remove = '',
+        bookingRemovalId = '',
         name = '',
         description = '',
         startTime = '',
         startDay = '',
         startMonth = '',
         startYear = '',
-
         endTime = '',
         endDay = '',
         endMonth = '',
         endYear = ''
     } = req.body;
+    if (remove === "on") {
+        bookingApi.removeBooking(bookingRemovalId)
+            .then(function () {
+                res.render('confirmation', {
+                    book: false
+                })
+            })
+    } else {
+        const start = formatDate(startTime, startDay, startMonth, startYear)
+        const end = formatDate(endTime, endDay, endMonth, endYear)
+        bookApi.bookResource({start, end, description, name, resourceId})
+            .then(function (response) {
+                console.log(response.body)
+                const bookingId = response.body.id
+                const date = start.getFullYear() + '-' + (start.getMonth() + 1) + '-' + start.getDate();
+                res.render('confirmation', {
+                    bookingId: bookingId,
+                    book: true,
+                    name: name,
+                    start: startTime,
+                    end: endTime,
+                    date: date,
 
-    const start = formatDate(startTime, startDay, startMonth, startYear)
-    const end = formatDate(endTime, endDay, endMonth, endYear)
-    // bookApi.bookResource({start, end, description, name, resourceId})
-    //     .then(function (response) {
-    //         console.log(response.body)
-    //         req.body = response.body
-    //         const date = start.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-    //         res.render('confirmation', {
-    //             title: name,
-    //             start: startTime,
-    //             end: endTime,
-    //             date: date
-    //
-    //         })
-    //     })
-    //     .catch(err => console.error(err))
-    const date = start.getFullYear() + '-' + (start.getMonth() + 1) + '-' + start.getDate();
-    res.render('confirmation', {
-        name: name,
-        start: startTime,
-        end: endTime,
-        date: date,
-        resourceId: resourceId
-    })
+                    resourceId: resourceId
+                })
+            })
+            .catch(err => console.error(err))
+    }
 }
-
 
 module.exports = {get, post}

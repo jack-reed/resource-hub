@@ -2,29 +2,45 @@
 
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-        <div class="govuk-panel govuk-panel--confirmation">
-            <h1 class="govuk-panel__title">
+    {{#if book}}
+        <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-panel govuk-panel--confirmation">
+                <div class="govuk-panel__body">
+                    Your booking for:
+                    <br><strong>{{name}}</strong>
+                    <br>Has been confirmed for
+                    <br><strong>{{start}}</strong> until <strong>{{end}}</strong>
+                    <br>
+                    <br>
+                    Please note your Booking Reference for cancellations:
+                    <br><strong>{{bookingId}}</strong>
+                </div>
 
-            </h1>
-            <div class="govuk-panel__body">
-                Your booking for:
-                <br><strong>{{name}}</strong>
-                <br>Has been confirmed for
-                <br><strong>{{start}}</strong> until <strong>{{end}}</strong>
-                <br>on <strong>{{date}}</strong>
             </div>
-
+            <h2 class="govuk-heading-m">What happens next</h2>
+            <p class="govuk-body">
+                Return to the <a class="govuk-link" href="/">Homepage</a>
+            </p>
+            <p class="govuk-body">
+                <a class="govuk-link" href="/book/{{resourceId}}">Remove</a> this booking
+            </p>
         </div>
-        <p class="govuk-body">We have sent you a confirmation email.</p>
-        <h2 class="govuk-heading-m">What happens next</h2>
-        <p class="govuk-body">
-            Return to the <a class="govuk-link" href="/">Homepage</a>
-        </p>
-        <p class="govuk-body">
-            <a class="govuk-link" href="/book/{{resourceId}}">Remove</a> this booking
-        </p>
-    </div>
+    {{else}}
+        <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-panel govuk-panel--confirmation">
+                <div class="govuk-panel__body">
+                    Your booking has been cancelled
+                </div>
+            </div>
+            <h2 class="govuk-heading-m">What happens next</h2>
+            <p class="govuk-body">
+                Return to the <a class="govuk-link" href="/">Homepage</a>
+            </p>
+            <p class="govuk-body">
+                <a class="govuk-link" href="/list">Make</a> another booking
+            </p>
+        </div>
+    {{/if}}
 </div>
 
 {{>footer}}
