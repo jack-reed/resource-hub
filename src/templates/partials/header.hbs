@@ -48,7 +48,7 @@
 <div class="govuk-width-container">
 
 <main class="govuk-main-wrapper " id="main-content" role="main">
-    <a href="#" class="govuk-back-link">Back</a>
+    <a onclick="window.history.go(-1); return false;" class="govuk-back-link">Back</a>
 
 {{#if title}}
         <h1 class="govuk-heading-xl">{{title}}</h1>

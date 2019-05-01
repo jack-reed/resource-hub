@@ -51,7 +51,7 @@ function get(req, res) {
  *  On success, renders appropriate confirmation page.
  */
 
-function post(req, res) {
+function post(req, res, next) {
     const resourceId = req.params.resourceId
 
     const {
@@ -68,19 +68,28 @@ function post(req, res) {
         endMonth = '',
         endYear = ''
     } = req.body;
-    if (remove === "on") {
+
+    if (remove) {
         bookingApi.removeBooking(bookingRemovalId)
-            .then(function () {
-                res.render('confirmation', {
-                    book: false
-                })
+            .then(function (response) {
+                if (response.data.count === 0) {
+
+                    res.render('error', {
+                        title: "Unrecognised Booking Reference Number"
+                    })
+                } else {
+                    res.render('confirmation', {
+                        response: response,
+                        book: false
+                    })
+                }
             })
+            .catch(err => console.error(err))
     } else {
         const start = formatDate(startTime, startDay, startMonth, startYear)
         const end = formatDate(endTime, endDay, endMonth, endYear)
         bookApi.bookResource({start, end, description, name, resourceId})
             .then(function (response) {
-                console.log(response.body)
                 const bookingId = response.body.id
                 const date = start.getFullYear() + '-' + (start.getMonth() + 1) + '-' + start.getDate();
                 res.render('confirmation', {
@@ -94,7 +103,15 @@ function post(req, res) {
                     resourceId: resourceId
                 })
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                const message = err.response.body.error.message
+                if (message.includes("doubleBooking")) {
+                    res.render('error', {
+                        title: "Double booking",
+                        resourceId: resourceId
+                    })
+                }
+            })
     }
 }
 

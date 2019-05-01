@@ -49,10 +49,9 @@ socket.on('response', (message) => {
 $chatForm.addEventListener('submit', (e) => {
     e.preventDefault()
     $chatFormInput.value.replace(/(^\s+|\s+$)/g, '')
-    console.log($chatFormInput.value)
 
     if ($chatFormInput.value.length === 0) {
-        console.log("EMPTY!")
+        console.log("Empty field!")
     } else {
 
         $chatFormButton.setAttribute('disabled', 'disabled')

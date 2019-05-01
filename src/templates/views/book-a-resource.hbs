@@ -9,15 +9,21 @@
 <div id='calendar'></div>
 <br>
 
-<form method='POST'>
+<form onsubmit="return validateForm()" method='POST'>
     {{! Removal toggle}}
-    <label class="govuk-label" for="{{text-id}}">
-        Remove a booking
-    </label>
-    <label class="govuk-label switch">
-        <input id="remove" name="remove" type="checkbox">
-        <span class="slider"></span>
-    </label>
+
+    <!--<label class="govuk-label" for="{{text-id}}">-->
+        <!--Remove a booking-->
+    <!--</label>-->
+    <div class="govuk-checkboxes">
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="remove" name="remove" type="checkbox" value="remove">
+            <label class="govuk-label govuk-checkboxes__label" for="waste-1">
+                Remove a booking
+            </label>
+        </div>
+    </div>
+    <br>
     <br>
     <fieldset style="display:none;" id="removeForm" class="govuk-fieldset">
         {{>text text='Booking Id' text-id='bookingRemovalId'}}

@@ -10,43 +10,43 @@
 
 <div class="govuk-form-group">
     <div class="govuk-date-input" id="">
-        <label class="govuk-label govuk-date-input__label">
+        <label class="govuk-label govuk-date-input__label" for="{{type-heading}}Date">
             {{type-heading}} Date
         </label>
         <div class="govuk-date-input__item">
             <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label">
+                <label class="govuk-label govuk-date-input__label" for="{{type}}Time">
                     Time
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="{{type}}-day"
+                <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="{{type}}Time"
                        name="{{type}}Time" type="time"
                        value="09:00" required>
             </div>
         </div>
         <div class="govuk-date-input__item">
             <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label">
+                <label class="govuk-label govuk-date-input__label" for="{{type}}Day">
                     Day
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}-day"
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}Day"
                        name="{{type}}Day" type="number" pattern="[0-9]*" value="{{value-day}}">
             </div>
         </div>
         <div class="govuk-date-input__item">
             <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label">
+                <label class="govuk-label govuk-date-input__label" for="{{type}}Month">
                     Month
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}-month"
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}Month"
                        name="{{type}}Month" type="number" pattern="[0-9]*" value="{{value-month}}" readonly>
             </div>
         </div>
         <div class=" govuk-date-input__item">
             <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label">
+                <label class="govuk-label govuk-date-input__label" for="{{type}}Year">
                     Year
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="{{type}}-year"
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="{{type}}Year"
                        name="{{type}}Year" type="number" pattern="[0-9]*" value="{{value-year}}" readonly>
             </div>
         </div>
