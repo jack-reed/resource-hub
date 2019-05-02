@@ -97,4 +97,8 @@ app.use(function (err, req, res, next) {
 });
 
 
+server.listen(port, () => {
+    console.log(`Server started correctly on port ${port}`)
+})
+
 module.exports = app;
