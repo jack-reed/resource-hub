@@ -8,6 +8,4 @@ const router = new express.Router()
 
 router.get('/', get)
 
-
-
 module.exports = router

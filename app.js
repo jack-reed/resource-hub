@@ -19,7 +19,7 @@ const publicDirectoryPath = path.join(__dirname, '/public')
 const viewsPath = path.join(__dirname, '/src/templates/views')
 const partialsPath = path.join(__dirname, '/src/templates/partials')
 
-// Setup static directory to serve
+// Setup directory to serve
 app.use(express.static(publicDirectoryPath))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -38,6 +38,19 @@ app.use(logger('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
+/**
+ * Open WebSocket Connection:
+ *
+ * On receiving message, try the POST method to the API
+ *
+ * @params botkey: to connect to the desired API bot
+ *         message: to be sent to API
+ *
+ * @returns API response to be served back to the client side
+ *          on failure, catches error in terminal window
+ *
+ *
+ */
 io.on('connection', (socket) => {
     console.log('New WebSocket connection')
 //sockets
@@ -61,7 +74,7 @@ io.on('connection', (socket) => {
     })
 })
 
-//router
+// set up routing
 app.use('/', require('./src/pages/home/index'))
 app.use('/chat', require('./src/pages/chat/index'))
 app.use('/list', require('./src/pages/list/index'))
@@ -82,6 +95,7 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
 
 server.listen(port, () => {
     console.log(`Server started correctly on port ${port}`)
