@@ -108,7 +108,8 @@ function post(req, res, next) {
                 if (message.includes("doubleBooking")) {
                     res.render('error', {
                         title: "Double booking",
-                        resourceId: resourceId
+                        resourceId: resourceId,
+                        booking: true
                     })
                 }
             })
