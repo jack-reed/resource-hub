@@ -20,6 +20,7 @@
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-3" id="{{type}}Time"
                        name="{{type}}Time" type="time"
+                       id="{{type}}Time" type="time"
                        value="09:00" required>
             </div>
         </div>
@@ -29,7 +30,10 @@
                     Day
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}Day"
-                       name="{{type}}Day" type="number" pattern="[0-9]*" value="{{value-day}}">
+                       name="{{type}}Day"
+                       id="{{type}}Day"
+                       type="number"
+                       pattern="[0-9]*" value="{{value-day}}">
             </div>
         </div>
         <div class="govuk-date-input__item">
@@ -38,7 +42,11 @@
                     Month
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="{{type}}Month"
-                       name="{{type}}Month" type="number" pattern="[0-9]*" value="{{value-month}}" readonly>
+                       name="{{type}}Month"
+                       id="{{type}}Month"
+                       type="number"
+                       pattern="[0-9]*"
+                       value="{{value-month}}" readonly>
             </div>
         </div>
         <div class=" govuk-date-input__item">
@@ -47,7 +55,11 @@
                     Year
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="{{type}}Year"
-                       name="{{type}}Year" type="number" pattern="[0-9]*" value="{{value-year}}" readonly>
+                       name="{{type}}Year"
+                       id="{{type}}Year"
+                       type="number"
+                       pattern="[0-9]*"
+                       value="{{value-year}}" readonly>
             </div>
         </div>
     </div>
