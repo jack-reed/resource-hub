@@ -93,6 +93,7 @@ function post(req, res, next) {
                 const bookingId = response.body.id
                 const date = start.getFullYear() + '-' + (start.getMonth() + 1) + '-' + start.getDate();
                 res.render('confirmation', {
+                    title: "Confirmation Page",
                     bookingId: bookingId,
                     book: true,
                     name: name,
